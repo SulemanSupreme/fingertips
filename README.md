@@ -4,8 +4,9 @@ Analyze diabetes care quality across NHS regions in England using Public Health 
 
 ## Features
 
-- **API**: FastAPI backend with endpoints for data, rankings, maps, and charts
-- **Web UI**: Interactive frontend to visualize diabetes care metrics
+- **Data API**: FastAPI backend with endpoints for data, rankings, maps, and charts
+- **AI API**: Node.js backend with OpenAI-powered analysis and streaming responses
+- **Web UI**: Interactive frontend to visualize diabetes care metrics with AI analysis
 - **Jupyter Notebook**: Exploratory data analysis with geographic visualizations
 
 ## Available Indicators
@@ -167,6 +168,72 @@ const DEFAULT_API_URL = 'API URL OF CHOICE'
 
 ---
 
+## Running the AI API (Node.js)
+
+The AI API provides OpenAI-powered analysis with streaming responses.
+
+### 1. Install Dependencies
+
+```bash
+cd src
+npm install
+```
+
+### 2. Configure Environment
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and add your OpenAI API key:
+
+```
+OPENAI_API_KEY=sk-your-api-key-here
+PORT=3210
+```
+
+### 3. Start the Server
+
+```bash
+npm start
+# or for development with auto-reload:
+npm run dev
+```
+
+The AI API will be available at http://localhost:3210
+
+### AI API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/suggest` | POST | Generate 3 query suggestions based on selected data |
+| `/analyze` | POST | Stream AI analysis of the data based on user query |
+| `/health` | GET | Health check |
+
+### CORS Configuration
+
+The AI API uses dynamic CORS that accepts requests from:
+- Any `localhost:*` when running on localhost
+- Any `*.yourdomain.com` when running on `yourdomain.com`
+
+This allows the frontend to connect from any port during development.
+
+### Configuring Custom AI API URL
+
+The frontend connects to `http://localhost:3210` by default. To change:
+
+**Option 1: URL Parameter**
+```
+http://localhost:3000?ai_api=https://my-ai-api.com
+```
+
+**Option 2: Edit script.js**
+```javascript
+const DEFAULT_AI_API_URL = 'https://my-ai-api.com'
+```
+
+---
+
 ## Running the Jupyter Notebook
 
 ### 1. Register the Kernel
@@ -203,13 +270,18 @@ jupyter notebook fingertips.ipynb
 
 ```
 fingertips/
-├── api.py              # FastAPI backend
+├── api.py              # FastAPI data backend
 ├── fingertips.ipynb    # Jupyter notebook analysis
+├── src/                # AI API (Node.js)
+│   ├── server.js
+│   ├── package.json
+│   ├── .env.example
+│   └── .env            # Your API keys (git-ignored)
 ├── public/             # Web UI
 │   ├── index.html
 │   ├── style.css
 │   └── script.js
-├── venv/               # Virtual environment
+├── venv/               # Python virtual environment
 └── README.md
 ```
 

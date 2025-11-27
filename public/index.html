@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fingertips Visual API</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <main>
+            <section class="title">
+                <h1>Fingertips API Visual UI</h1>
+                <p class="subtitle">Diabetes care quality data across NHS regions in England</p>
+            </section>
+            <section class="controls">
+
+                <div class="input">
+                    <div>
+                <button id="submitButton" class="btn btn-primary" onclick="getOutput()">Submit</button></div>
+                    <label for="indicators">Select Indicator</label>
+                    <select class="form-select" id="indicators" aria-label="Indicators" onchange="selectIndicator()">
+                        <option value="" disabled selected>Select an indicator...</option>
+                    </select>
+
+                    <label for="indicators">Time Periods</label>
+                    <select class="form-select" id="time-periods" aria-label="Time Periods" onchange="selectIndicator()">
+                        <option value="" disabled selected>Select a time period...</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="visualizations">
+                <div class="viz-item">
+                    <div class="output-title">Geographic Map</div>
+                    <div class="viz-preview" id="map-output">
+                        Select an indicator to generate map
+                    </div>
+                </div>
+                <div class="viz-item">
+                    <div class="output-title">Correlation Chart</div>
+                    <div class="viz-preview" id="chart-output">
+                        Select an indicator to generate chart
+                    </div>
+                </div>
+            </section>
+
+            <section class="builder">
+                <div class="output">
+                    <div class="output-title">Data Table</div>
+                    <div class="output-preview" id="output">
+                        Select an indicator to see data
+                    </div>
+                </div>
+            </section>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <script src="./script.js"></script>
+        <script src="./config.js"></script>
+    </body>
+</html>

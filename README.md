@@ -88,6 +88,39 @@ curl "http://localhost:8000/map?indicator_id=94146&format=base64"
 
 ---
 
+## Running API with PM2
+
+To run your FastAPI app under **pm2** while still using your virtual environment, wrap the command in a small shell script so pm2 can activate the venv and launch Uvicorn.
+
+### 1. Create a start script
+
+Create a file named `start_api.sh` in your project root:
+
+```bash
+#!/bin/bash
+source venv/bin/activate
+exec uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Make it executable:
+
+```bash
+chmod +x start_api.sh
+```
+
+### 2. Start it with pm2
+
+```bash
+pm2 start ./start_api.sh --name fastapi-app
+```
+
+### 3. (Optional) Save pm2 process list and enable startup
+
+```bash
+pm2 save
+pm2 startup
+```
+
 ## Running the Web UI
 
 The web UI is a static HTML/CSS/JS app in the `public/` folder.

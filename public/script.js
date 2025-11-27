@@ -3,7 +3,7 @@
 const DEFAULT_API_URL = 'http://localhost:8000'
 
 
-const apiURL = getApiUrl();
+const apiURL = DEFAULT_API_URL
 console.log('Using API:', apiURL);
 
 const outputDiv = document.getElementById('output')

@@ -1,21 +1,7 @@
 // API URL configuration
-// Can be overridden via:
-// 1. URL param: ?api=https://your-api.com
-// 2. config.js file: window.API_URL = 'https://your-api.com'
+// Can be overridden 
 const DEFAULT_API_URL = 'http://localhost:8000'
 
-function getApiUrl() {
-    // Check URL parameter first
-    const urlParams = new URLSearchParams(window.location.search);
-    const apiParam = urlParams.get('api');
-    if (apiParam) return apiParam.replace(/\/$/, ''); // Remove trailing slash
-
-    // Check global config
-    if (window.API_URL) return window.API_URL.replace(/\/$/, '');
-
-    // Default
-    return DEFAULT_API_URL;
-}
 
 const apiURL = getApiUrl();
 console.log('Using API:', apiURL);

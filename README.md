@@ -118,39 +118,18 @@ npx serve .
 
 ### Configuring a Custom API URL
 
-You can point the Web UI to a different API server (e.g., production) using these methods:
+You can point the Web UI to a different API server (e.g., production) using this method:
 
-**Option 1: URL Parameter**
+1. Go to /public/script.js
 
-Add `?api=` to the URL:
-
-```
-http://localhost:3000?api=https://my-prod-api.com
-```
-
-**Option 2: Config File**
-
-Create a `config.js` file in the `public/` folder:
-
+2. Change:
 ```javascript
-// public/config.js
-window.API_URL = 'https://my-prod-api.com';
+const DEFAULT_API_URL = 'http://localhost:8000'
 ```
+to:
+```javascript
+const DEFAULT_API_URL = 'API URL OF CHOICE'
 
-Then add it to `index.html` before `script.js`:
-
-```html
-<script src="./config.js"></script>
-<script src="./script.js"></script>
-```
-
-**Option 3: Environment-based Config**
-
-For deployment, you can use a build script to generate `config.js`:
-
-```bash
-# Example: create config for production
-echo "window.API_URL = 'https://api.example.com';" > public/config.js
 ```
 
 ---
